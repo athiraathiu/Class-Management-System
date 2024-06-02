@@ -1,0 +1,211 @@
+{% load static %}
+{% include 'header.html' %}
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  {% include 'nav.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Class</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-4">
+            <!-- general form elements -->
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title"> Add Class</h3>
+              </div>
+
+              {% if messages != '' %}
+                <script>
+                  alert('{{ messages }}');
+                </script>
+              {% endif %}
+
+
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" action="{% url 'add_cls' %}">
+
+                <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Add Class</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Class" name="cls">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                      
+        
+
+                </div>
+                <!-- /.card-body -->
+
+               
+              </form>
+            </div>
+            <!-- /.card -->
+
+            <!-- general form elements -->
+           
+            <!-- /.card -->
+
+            <!-- Input addon -->
+           
+            <!-- /.card -->
+            <!-- Horizontal Form -->
+          
+            <!-- /.card -->
+
+          </div>
+
+          <div class="col-md-8">
+            <!-- Form Element sizes -->
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">View Class</h3>
+              </div>
+
+             
+              <form>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>#SI.No</th>
+                          <th>Class</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                          
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for y in sample %}
+                          <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ y.cls }}</td>
+                            <td class="project-state">
+                                <span class="badge badge-success">Active</span>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="" target="_blank" data-toggle="modal" data-target="#modal-viewclass">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger btn-sm"  onclick="cls_del()" href="{% url 'dlt_cls' cl_id=y.id %}">
+                                    <i class="fas fa-trash">
+                                    </i>
+                                    Delete
+                                </a>
+                            </td>
+        
+                          </tr>
+                        {% endfor %}
+                        
+                       
+                        </tbody>
+                      </table>
+                <!-- /.card-body -->
+              </form>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          
+            <!-- /.card -->
+
+            <!-- general form elements disabled -->
+         
+            <!-- /.card -->
+            <!-- general form elements disabled -->
+            
+            <!-- /.card -->
+          </div>
+          
+          <!--/.col (left) -->
+          <!-- right column -->
+          
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+  <div class="modal fade" id="modal-viewclass">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Class</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+               <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+               
+                
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Edit Class</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Edit Class">
+                  </div>  
+
+                  <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control">
+                      <option>Active</option>
+                      <option>Deactive</option>
+                    </select>
+                  </div>
+              </div>
+
+             
+              <!-- /.card-body -->
+            </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" >Back</button>
+          <button type="button" class="btn btn-primary">OK</button>
+          
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+{% include 'scripts.html' %}
+</body>
+</html>
